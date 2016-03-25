@@ -13,7 +13,9 @@ System requirements
 Build and Deploy on Wildfly
 ---------------------------
 
-1. Make sure you have started the JBoss Server.
+Make sure you have started the JBoss Server. You can run 'mvn clean package' and upload the resulting .war with the management interface of the server, or you can follow these steps:
+
+1. Create a Wildfly user with credentials pfspdemo/pfspdemo.
 2. Open a command line and navigate to the root directory of this quickstart.
 3. Type this command to build and deploy the archive:
 
