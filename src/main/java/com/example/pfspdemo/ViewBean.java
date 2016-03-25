@@ -22,16 +22,26 @@ public class ViewBean implements Serializable {
 	private Boolean panelRendered = false;
 
 	public void showPanel() {
+		this.clear();
 		this.panelRendered = true;
+	}
 
+	private void clear() {
 		this.setName(null);
 		this.setNickname(null);
+		this.setEmail(null);
+		this.setBlog(null);
 	}
 
 	public void send() {
 		String message = String.format("Registered! Name %s, nickname %s, email %s, blog %s",
 				this.getName(), this.getNickname(), this.getEmail(), this.getBlog());
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, message));
+		this.panelRendered = false;
+	}
+
+	public void cancel() {
+		this.clear();
 		this.panelRendered = false;
 	}
 

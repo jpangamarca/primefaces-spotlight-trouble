@@ -66,10 +66,7 @@
 						action="#{viewBean.send()}" />
 					<p:commandButton update="registrationContainer" process="@this"
 						value="Cancel" icon="ui-icon-closethick"
-						oncomplete="PF('sp').hide()">
-						<f:setPropertyActionListener value="#{false}"
-							target="#{viewBean.panelRendered}" />
-					</p:commandButton>
+						oncomplete="PF('sp').hide()" action="#{viewBean.cancel()}" />
 				</p:panel>
 			</h:panelGroup>
 		</p:panel>
