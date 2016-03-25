@@ -1,0 +1,303 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Primefaces Spotlight Demo</title>
+	<h:outputScript library="pfspdemo" name="prettyprint.js"></h:outputScript>
+	<script type="text/javascript">
+		function handleForm(xhr,status,args) {
+	        if (!args.validationFailed) {
+	            PF('sp').hide();
+			}
+	    }
+	</script>
+</h:head>
+<h:body>
+	<h:form id="f">
+		<p:growl globalOnly="true" autoUpdate="true" />
+		<p:panel id="main" header="Primefaces spotlight demo">
+			<h:panelGroup layout="block">
+				<p:commandButton
+					value="Simulate modal dialog with panel + spotlight"
+					icon="ui-icon-play" process="@this" update="main sp"
+					oncomplete="PF('sp').show()" action="#{viewBean.showPanel()}" />
+			</h:panelGroup>
+			<h:panelGroup id="registrationContainer">
+				<p:panel id="registration" header="Registration"
+					rendered="#{viewBean.panelRendered}">
+					<p:focus for="name" />
+					<p:panelGrid columns="4"
+						columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-2, ui-grid-col-6"
+						layout="grid" styleClass="ui-fluid ui-panelgrid-blank">
+						<p:outputLabel for="name" value="Name" />
+						<h:panelGroup>
+							<p:inputText id="name" value="#{viewBean.name}" required="true">
+								<p:ajax update="mname" />
+							</p:inputText>
+							<p:message id="mname" for="name" />
+						</h:panelGroup>
+						<p:outputLabel for="nickname" value="Nickname" />
+						<h:panelGroup>
+							<p:inputText id="nickname" value="#{viewBean.nickname}"
+								required="true">
+								<p:ajax update="mnickname" />
+							</p:inputText>
+							<p:message id="mnickname" for="nickname" />
+						</h:panelGroup>
+						<p:outputLabel for="email" value="Email" />
+						<h:panelGroup>
+							<p:inputText id="email" value="#{viewBean.email}" required="true">
+								<p:ajax update="memail" />
+							</p:inputText>
+							<p:message id="memail" for="email" />
+						</h:panelGroup>
+						<p:outputLabel for="blog" value="Blog" />
+						<h:panelGroup>
+							<p:inputText id="blog" value="#{viewBean.blog}" required="true">
+								<p:ajax update="mblog" />
+							</p:inputText>
+							<p:message id="mblog" for="blog" />
+						</h:panelGroup>
+					</p:panelGrid>
+					<p:commandButton update="registrationContainer"
+						process="registration" value="Send" icon="ui-icon-check"
+						oncomplete="handleForm(xhr,status,args)"
+						action="#{viewBean.send()}" />
+					<p:commandButton update="registrationContainer" process="@this"
+						value="Cancel" icon="ui-icon-closethick"
+						oncomplete="PF('sp').hide()">
+						<f:setPropertyActionListener value="#{false}"
+							target="#{viewBean.panelRendered}" />
+					</p:commandButton>
+				</p:panel>
+			</h:panelGroup>
+		</p:panel>
+
+		<p:panel>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Quisque dignissim facilisis nibh sit amet interdum. Curabitur congue
+				dui nec lorem porttitor, ac molestie diam elementum. Phasellus vitae
+				odio metus. Cras at odio mollis, hendrerit enim sit amet, dictum
+				diam. Aliquam laoreet cursus euismod. In id nunc semper, efficitur
+				felis eu, condimentum lorem. Fusce viverra dolor eu mauris pretium
+				tempus. Cras vulputate tempor fringilla.</p>
+
+			<p>Vivamus quis metus vitae tellus ornare imperdiet a vitae mi.
+				Sed placerat eget elit ac venenatis. Integer pulvinar ante eu
+				sodales euismod. Sed viverra nunc et maximus commodo. In bibendum
+				dignissim neque. Nulla quis hendrerit eros, vitae fringilla purus.
+				Pellentesque pellentesque nisl erat, vel lobortis ipsum vehicula id.</p>
+
+			<p>Aliquam neque ligula, ultricies sed justo in, dictum ultrices
+				libero. Suspendisse maximus ac orci vitae sagittis. Aenean lobortis
+				ultrices tellus et ultrices. In tristique nulla leo, a commodo neque
+				ornare non. Proin venenatis elementum tristique. Aliquam ut bibendum
+				neque. Nunc elementum mauris ac magna blandit lacinia. Phasellus
+				vitae egestas lorem. Nullam quis lacinia ligula. Sed quis lobortis
+				magna. Cras eu erat condimentum eros consequat tempus. Aenean luctus
+				urna id iaculis laoreet. In vitae euismod velit, quis egestas purus.</p>
+
+
+			<p>Aenean sed metus in felis iaculis sagittis nec eget risus.
+				Proin nec eleifend nisi. Nunc eleifend tortor accumsan, volutpat
+				diam vitae, accumsan neque. Vestibulum efficitur commodo purus, in
+				ultricies ligula. In in ex sagittis, consequat est sit amet,
+				dignissim nisi. Cras ornare lacinia risus, eget egestas arcu. Nam
+				porta nulla orci, eu bibendum ex condimentum non. Nulla vel mattis
+				mi.</p>
+
+			<p>Fusce porttitor tortor sed egestas fringilla. Aliquam eu lacus
+				feugiat, pulvinar nisi at, feugiat augue. Donec auctor suscipit
+				dapibus. Phasellus pellentesque sem vestibulum eros placerat, ut
+				venenatis enim iaculis. Duis tincidunt purus neque. Pellentesque
+				ultrices odio vel justo egestas rhoncus. Ut ac tempus augue, quis
+				volutpat ligula. In consectetur, risus non egestas viverra, nisi
+				ante dapibus nisl, porttitor egestas orci quam ut justo.</p>
+
+			<p>Curabitur ultrices scelerisque diam in hendrerit. Mauris
+				fringilla maximus iaculis. Maecenas orci elit, accumsan id sagittis
+				vel, porttitor at nunc. Duis ultrices ipsum ipsum, ut ultrices
+				mauris luctus quis. Donec quis justo a tellus maximus sollicitudin.
+				Duis posuere, nunc a dapibus sodales, erat tortor tincidunt ligula,
+				sed porta mi massa et mauris. Nulla euismod nisl quis dolor molestie
+				finibus. Etiam eleifend neque in massa semper rutrum non suscipit
+				quam.</p>
+
+			<p>Aenean quis mi at lorem faucibus pellentesque. Nam vel justo
+				sed est tempus viverra. Vivamus tempus augue ac magna congue, vel
+				dapibus tellus porta. Suspendisse potenti. Fusce lacinia sapien ac
+				dui accumsan dictum. Curabitur nec risus condimentum, tincidunt dui
+				eget, egestas diam. Nam quam massa, tristique in purus facilisis,
+				eleifend dictum arcu. Curabitur ultrices facilisis aliquam.
+				Curabitur iaculis sapien at erat dapibus, ut pulvinar tellus
+				egestas. Vivamus sem metus, ornare vel viverra sed, convallis id
+				quam. Vestibulum ultricies porta dui et eleifend. Nulla felis enim,
+				tincidunt et mauris ut, imperdiet tempus elit. Nam id eros at risus
+				commodo congue eget sed risus. In hac habitasse platea dictumst.
+				Suspendisse tempus quam tortor, cursus maximus elit commodo sed.
+				Curabitur in pretium neque.</p>
+
+			<p>Sed sed viverra lectus. Cras purus justo, commodo vitae rutrum
+				quis, interdum consectetur ante. Fusce dui tortor, lacinia quis
+				viverra non, pretium eget massa. Integer semper ultrices
+				condimentum. Donec non enim luctus, volutpat massa ac, suscipit
+				diam. Aliquam venenatis viverra mollis. Pellentesque feugiat nisi
+				laoreet est commodo, vel vehicula eros vestibulum. Sed vitae
+				scelerisque lectus. Maecenas neque magna, hendrerit in rutrum ut,
+				auctor eu enim. Mauris tristique mi dolor, vel iaculis nisi ornare
+				vitae. Curabitur consectetur id diam sit amet pretium. Suspendisse
+				condimentum molestie augue, malesuada aliquam justo varius ut.
+				Aenean diam lacus, hendrerit malesuada ultricies eget, tincidunt sed
+				nisi. Nullam facilisis posuere metus et sollicitudin.</p>
+
+			<p>Morbi metus sem, sagittis sed posuere nec, mattis vel ante.
+				Nunc vitae purus nec ipsum efficitur tincidunt sit amet rutrum
+				turpis. Suspendisse sagittis tincidunt nisi. Nunc sed felis lectus.
+				Praesent bibendum tellus at mi lobortis, pellentesque scelerisque
+				tellus ullamcorper. Praesent volutpat commodo tortor non gravida.
+				Fusce posuere varius elit, a euismod felis commodo non. Donec arcu
+				turpis, pretium at nisl in, fermentum mattis mauris. Vivamus pretium
+				diam vehicula tortor condimentum, at feugiat velit pretium. Etiam in
+				eros a ante porttitor pretium gravida at arcu. Proin sit amet
+				aliquam lectus. Mauris eget risus luctus nulla porttitor tristique
+				tincidunt sit amet nunc.</p>
+
+			<p>Nullam interdum nec justo in sollicitudin. Vestibulum
+				facilisis condimentum massa vel bibendum. Donec dignissim lacinia
+				mollis. Nullam auctor tellus sed commodo laoreet. Mauris non laoreet
+				mi. Praesent eget sagittis sapien, sed suscipit tellus. Vestibulum
+				ante ipsum primis in faucibus orci luctus et ultrices posuere
+				cubilia Curae; Suspendisse id tellus neque. In suscipit enim a dolor
+				iaculis, varius placerat odio posuere. In hac habitasse platea
+				dictumst. Donec dictum ante sit amet accumsan posuere. Maecenas
+				velit mi, tristique porta iaculis sed, fermentum at justo. Donec
+				vitae fringilla turpis. Fusce euismod semper varius. Nam sed urna
+				iaculis, pharetra sem eget, laoreet dui. Cras quam nisi, pharetra
+				nec cursus ac, eleifend vestibulum urna.</p>
+
+			<p>Integer posuere molestie sapien, vel tempor est pharetra nec.
+				Cras sed posuere metus. Maecenas vulputate elit dui, non vehicula
+				erat consectetur ut. Mauris bibendum justo vitae felis mollis
+				consectetur. Suspendisse commodo rutrum blandit. Nam scelerisque
+				iaculis tortor, vel rutrum leo porttitor eu. Proin elementum justo
+				id diam semper laoreet. Fusce vel velit tortor. Cras neque mauris,
+				maximus id dignissim in, vehicula sit amet lacus. Nam auctor quam eu
+				mauris dignissim rhoncus.</p>
+
+			<p>Fusce luctus molestie turpis ut fermentum. Interdum et
+				malesuada fames ac ante ipsum primis in faucibus. In justo urna,
+				mollis sollicitudin lacus ac, interdum luctus quam. Pellentesque
+				accumsan, leo ut tempus iaculis, mauris nisi feugiat nibh, vel
+				interdum libero eros vel purus. Vestibulum hendrerit vel nunc rutrum
+				auctor. Vestibulum ante ipsum primis in faucibus orci luctus et
+				ultrices posuere cubilia Curae; Aliquam pellentesque congue
+				imperdiet.</p>
+
+			<p>In quis lorem accumsan, sodales ipsum ut, commodo massa.
+				Mauris ac dui ultrices, faucibus quam eget, gravida felis. Quisque
+				facilisis finibus libero, vitae facilisis ligula luctus sed. Ut non
+				porta metus, non iaculis elit. Sed turpis augue, laoreet ac cursus
+				ac, lacinia nec mauris. Proin nec metus pharetra.</p>
+
+			<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum</p>
+
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+				vehicula justo eget interdum molestie. Nulla facilisi. Vestibulum
+				nibh ligula, tristique condimentum nunc id, porttitor ultrices erat.
+				Praesent accumsan, nunc ac ultricies volutpat, dolor felis ultrices
+				nisl, vitae dictum orci lacus non mauris. Morbi eleifend euismod
+				libero id varius. Donec varius rutrum justo in pulvinar. Cras eros
+				odio, pharetra in rutrum nec, laoreet vel orci. Nulla varius lectus
+				ac lorem egestas, ut fermentum eros rhoncus. Pellentesque interdum
+				tristique massa ac molestie. Curabitur aliquam gravida enim, eget
+				iaculis ex porta sit amet. Ut viverra dolor nibh, consectetur
+				posuere mauris tristique in. Vivamus vitae lacus efficitur,
+				vestibulum eros vel, viverra augue.</p>
+
+			<p>Ut imperdiet id diam vel tristique. Maecenas laoreet dapibus
+				fringilla. Quisque sit amet sapien vitae dui molestie condimentum.
+				Integer suscipit ante et nulla pulvinar blandit vel nec augue. Nulla
+				pretium, tortor sed facilisis congue, diam felis sodales sem, nec
+				tristique tortor diam sit amet mi. Nam pharetra aliquet justo. Donec
+				sed metus pellentesque, tincidunt augue non, rutrum enim. Nunc eu
+				quam faucibus, auctor purus eget, eleifend tortor. Nam id gravida
+				neque. Ut commodo elit at nulla auctor, et suscipit nulla dictum.
+				Fusce sit amet cursus arcu. Vivamus facilisis arcu ut velit
+				sollicitudin commodo. Nunc non ornare felis, nec posuere augue.</p>
+
+			<p>Praesent vehicula eu eros id accumsan. Etiam placerat leo
+				sapien, eget elementum sapien lobortis in. Vivamus fermentum ex id
+				leo faucibus facilisis nec sed metus. In eleifend sodales mauris, a
+				mattis elit laoreet vitae. Aenean ut posuere arcu. Praesent faucibus
+				semper tortor in gravida. Aliquam a est risus. Quisque sapien risus,
+				bibendum at sollicitudin eu, accumsan vitae quam. Class aptent
+				taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+				himenaeos. Sed efficitur quam a lacus accumsan, sit amet posuere
+				velit sollicitudin. Ut dapibus nec mi vel ultricies. Sed eget est id
+				nulla porta imperdiet. Nulla nisl tortor, venenatis ut sagittis sed,
+				elementum vitae orci.</p>
+
+			<p>Sed ligula mi, posuere sit amet tristique eu, eleifend vitae
+				leo. Duis venenatis nulla at augue scelerisque, vestibulum ornare
+				elit luctus. Aliquam non purus sollicitudin, vestibulum felis sed,
+				ornare nibh. Morbi tincidunt fermentum tortor, a blandit nunc
+				tristique eget. Integer a efficitur augue. Maecenas eget ligula et
+				justo viverra vestibulum et eget turpis. Nunc ac venenatis justo.
+				Morbi commodo urna in urna ultrices, gravida pellentesque urna
+				suscipit. Aenean ornare pulvinar luctus. Donec semper feugiat
+				lobortis. Duis bibendum ex et metus aliquam rhoncus. Integer egestas
+				risus ut pharetra.</p>
+
+			<p>Integer posuere molestie sapien, vel tempor est pharetra nec.
+				Cras sed posuere metus. Maecenas vulputate elit dui, non vehicula
+				erat consectetur ut. Mauris bibendum justo vitae felis mollis
+				consectetur. Suspendisse commodo rutrum blandit. Nam scelerisque
+				iaculis tortor, vel rutrum leo porttitor eu. Proin elementum justo
+				id diam semper laoreet. Fusce vel velit tortor. Cras neque mauris,
+				maximus id dignissim in, vehicula sit amet lacus. Nam auctor quam eu
+				mauris dignissim rhoncus.</p>
+
+			<p>Fusce luctus molestie turpis ut fermentum. Interdum et
+				malesuada fames ac ante ipsum primis in faucibus. In justo urna,
+				mollis sollicitudin lacus ac, interdum luctus quam. Pellentesque
+				accumsan, leo ut tempus iaculis, mauris nisi feugiat nibh, vel
+				interdum libero eros vel purus. Vestibulum hendrerit vel nunc rutrum
+				auctor. Vestibulum ante ipsum primis in faucibus orci luctus et
+				ultrices posuere cubilia Curae; Aliquam pellentesque congue
+				imperdiet.</p>
+
+			<p>In quis lorem accumsan, sodales ipsum ut, commodo massa.
+				Mauris ac dui ultrices, faucibus quam eget, gravida felis. Quisque
+				facilisis finibus libero, vitae facilisis ligula luctus sed. Ut non
+				porta metus, non iaculis elit. Sed turpis augue, laoreet ac cursus
+				ac, lacinia nec mauris. Proin nec metus pharetra.</p>
+
+			<p>Lorem Ipsum is simply dummy text of the printing and
+				typesetting industry. Lorem Ipsum has been the industry's standard
+				dummy text ever since the 1500s, when an unknown printer took a
+				galley of type and scrambled it to make a type specimen book. It has
+				survived not only five centuries, but also the leap into electronic
+				typesetting, remaining essentially unchanged. It was popularised in
+				the 1960s with the release of Letraset sheets containing Lorem Ipsum
+				passages, and more recently with desktop publishing software like
+				Aldus PageMaker including versions of Lorem Ipsum</p>
+
+
+		</p:panel>
+
+	</h:form>
+
+	<p:spotlight id="sp" target=":f:registration" widgetVar="sp" />
+
+</h:body>
+</html>
